@@ -42,3 +42,9 @@ Users can select a chat room from the available options or create a new one.
 Type your message in the input field and click on Send button to send it to the chat room.
 4. **Engage in COnversations:**
 Interact with other users by sending and receiving messages in real-time.
+
+![Screenshot 2024-06-03 104931](https://github.com/Mausam-Raj/Chat-Room-Web-App/assets/168266027/7806979b-ff36-4039-a5e0-a445b06d2da4)
+
+![Screenshot 2024-06-03 104954](https://github.com/Mausam-Raj/Chat-Room-Web-App/assets/168266027/3efcf0b1-924d-4266-94f3-995c0d191e34)
+
+![Screenshot 2024-06-03 105300](https://github.com/Mausam-Raj/Chat-Room-Web-App/assets/168266027/0cd77d31-b5f7-4a75-8615-21b8d6585d70)
