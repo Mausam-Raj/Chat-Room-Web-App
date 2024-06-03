@@ -13,8 +13,8 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class MessageController {
 
-    @MessageMapping("/message")
-    @SendTo("/topic/return-to")
+    @MessageMapping("/send")
+    @SendTo("/topic/chat/messages")
     public Message getContent(@RequestBody Message message) {
 //        Method to get the content of the message.
         return message;

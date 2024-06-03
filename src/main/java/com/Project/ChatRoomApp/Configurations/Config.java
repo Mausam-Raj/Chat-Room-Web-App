@@ -16,14 +16,14 @@ public class Config implements WebSocketMessageBrokerConfigurer {
     @Override
     public void registerStompEndpoints(StompEndpointRegistry registry) {
 //        Registering the endpoint for WebSocket communication.
-        registry.addEndpoint("/server1").withSockJS();
+        registry.addEndpoint("/chatroom").withSockJS();
     }
 
     @Override
     public void configureMessageBroker(MessageBrokerRegistry registry) {
 //        Configuring message broker to enable message handling for "/topic".
-        registry.enableSimpleBroker("/topic");
+        registry.enableSimpleBroker("/topic/chat");
 //        Setting the application destination prefix for messages.
-        registry.setApplicationDestinationPrefixes("/app");
+        registry.setApplicationDestinationPrefixes("/app/chat");
     }
 }

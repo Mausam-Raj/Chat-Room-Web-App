@@ -1,14 +1,14 @@
 let stompClient = null;
 
 function connect() {
-    let socket = new SockJS("/server1");
+    let socket = new SockJS("/chatroom");
     stompClient = Stomp.over(socket);
     stompClient.connect({}, function (frame) {
         console.log("Connected: " + frame);
         $("#name-form").hide();
         $("#chat-room").show();
 
-        stompClient.subscribe("/topic/return-to", function (response) {
+        stompClient.subscribe("/topic/chat/messages", function (response) {
             console.log("Message received: " + response.body);
             showMessage(JSON.parse(response.body));
         });
@@ -32,7 +32,7 @@ function sendMessage() {
         name: localStorage.getItem("name"),
         content: content
     };
-    stompClient.send("/app/message", {}, JSON.stringify(jsonOb));
+    stompClient.send("/app/chat/send", {}, JSON.stringify(jsonOb));
     $("#message-value").val(''); // Clear the input after sending
 }
 
