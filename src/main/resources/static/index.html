@@ -12,14 +12,15 @@
     <script src="/script.js"></script>
 </head>
 <body class="bg-dark">
-    <div id="name-form" class="bg-primary d-flex align-items-center">
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-md-4 offset-md-4">
+    <div id="name-form">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-md-6">
+                    <h1 class="text-center mb-4">Welcome to Chat Room</h1>
                     <div class="input-group">
-                        <input type="text" name="" id="name-value" class="form-control" placeholder="Enter your name" autofocus>
+                        <input type="text" id="name-value" class="form-control" placeholder="Enter your name" autofocus>
                         <div class="input-group-append">
-                            <button class="btn btn-dark" id="login">Enter</button>
+                            <button class="btn" id="login">Enter</button>
                         </div>
                     </div>
                 </div>
@@ -27,25 +28,25 @@
         </div>
     </div>
 
-    <div id="chat-room" class="d-none">
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-md-6 offset-md-3">
+    <div id="chat-room">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-md-8">
                     <div class="card mt-3">
                         <div class="card-header">
                             <h3 id="name-title"></h3>
                         </div>
                         <div class="card-body">
-                            <div class="input-group">
-                                <input type="text" name="" id="message-value" class="form-control" placeholder="Enter your message" autofocus>
+                            <div class="input-group mb-3">
+                                <input type="text" id="message-value" class="form-control" placeholder="Enter your message">
                                 <div class="input-group-append">
-                                    <button class="btn btn-dark" id="send-btn">Send</button>
-                                    <button class="btn btn-dark" id="logout">Log out</button>
+                                    <button class="btn" id="send-btn">Send</button>
+                                    <button class="btn" id="logout">Log out</button>
                                 </div>
                             </div>
-                            <div class="table-responsive mt-3">
-                                <table id="message-container-table">
-
+                            <div class="table-responsive">
+                                <table id="message-container-table" class="table table-borderless">
+                                    <!-- Messages will appear here -->
                                 </table>
                             </div>
                         </div>
@@ -54,5 +55,11 @@
             </div>
         </div>
     </div>
+
+    <footer>
+        <div>
+            Created by Mausam Raj.
+        </div>
+    </footer>
 </body>
 </html>

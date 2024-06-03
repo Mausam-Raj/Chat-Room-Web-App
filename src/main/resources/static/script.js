@@ -1,49 +1,70 @@
 let stompClient = null;
+
 function connect() {
     let socket = new SockJS("/server1");
     stompClient = Stomp.over(socket);
-    stompClient.connect({}, function(frame){
+    stompClient.connect({}, function (frame) {
         console.log("Connected: " + frame);
-        $("#name-form").addClass("d-none");
-        $("#chat-room").removeClass("d-none");
+        $("#name-form").hide();
+        $("#chat-room").show();
 
-        stompClient.subscribe("/topic/return-to", function(response) {
-            showMessage(JSON.parse(response.body))
+        stompClient.subscribe("/topic/return-to", function (response) {
+            console.log("Message received: " + response.body);
+            showMessage(JSON.parse(response.body));
         });
-    })
+    }, function (error) {
+        console.error("STOMP error: " + error);
+    });
 }
 
 function showMessage(message) {
+    console.log("Displaying message: " + message.content);
     $("#message-container-table").prepend(`<tr><td><b>${message.name} :</b> ${message.content}</td></tr>`);
 }
 
 function sendMessage() {
+    let content = $("#message-value").val();
+    if (content.trim() === "") {
+        alert("Message cannot be empty");
+        return;
+    }
     let jsonOb = {
         name: localStorage.getItem("name"),
-        content: $("#message-value").val()
-    }
+        content: content
+    };
     stompClient.send("/app/message", {}, JSON.stringify(jsonOb));
+    $("#message-value").val(''); // Clear the input after sending
 }
 
-$(document).ready(e => {
-    $("#login").click(() => {
+$(document).ready(function () {
+    $("#login").click(function () {
         let name = $("#name-value").val();
+        if (name.trim() === "") {
+            alert("Please enter your name");
+            return;
+        }
         localStorage.setItem("name", name);
         $("#name-title").html(`Welcome, <b>${name}</b>`);
         connect();
-    })
+    });
 
-    $("#send-btn").click(() => {
+    $("#send-btn").click(function () {
         sendMessage();
-    })
+    });
 
-    $("#logout").click(() => {
+    $("#logout").click(function () {
         localStorage.removeItem("name");
-        if(stompClient !== null) {
+        if (stompClient !== null) {
             stompClient.disconnect();
-            $("#name-form").removeClass("d-none");
-            $("#chat-room").addClass("d-none");
-            console.log(stompClient);
+            $("#name-form").show();
+            $("#chat-room").hide();
+            console.log("Disconnected");
         }
-    })
-})
+    });
+
+    $("#message-value").keypress(function (e) {
+        if (e.which == 13) { // Enter key pressed
+            sendMessage();
+        }
+    });
+});
